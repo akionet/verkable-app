@@ -1,0 +1,23 @@
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #18221c;
+  background: #f3f6f2;
+}
+
+body {
+  margin: 0;
+}
+
+pre {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-height: 18rem;
+  margin: 0;
+  padding: 1rem;
+  overflow: auto;
+  border-radius: 0.5rem;
+  background: #101814;
+  color: #d8f5e3;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
