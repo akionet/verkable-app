@@ -1,6 +1,7 @@
 {
   "name": "navigator-orchestrator-app",
   "version": "0.1.0",
+  "license": "Apache-2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,10 +10,11 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
+    "test:license": "node scripts/check-license.mjs",
     "test:bdd": "pnpm build && start-server-and-test \"vite preview --host 127.0.0.1 --port 4173\" http://127.0.0.1:4173 \"cucumber-js --config cucumber.mjs --tags \\\"not @F-WFB-R2-06\\\"\"",
     "test:e2e": "pnpm build && node scripts/run-real-e2e.mjs",
     "guard:bundle": "node scripts/check-bundle.mjs",
-    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm guard:bundle && pnpm test:bdd"
+    "check": "pnpm test:license && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm guard:bundle && pnpm test:bdd"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
