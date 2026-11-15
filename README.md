@@ -48,6 +48,41 @@ change — and is worth preserving through the extraction.
   the copy rather than inheriting it.
 - No wildcard CORS. It is a shortcut that becomes the deployment model.
 
+## Automation reports (OBS-001 F1)
+
+Open **Automation** from the console, then choose an organisation and space.
+Direct links use `/orgs/:org/spaces/:space/automation`. The route is a client-only
+React view; its chart code is loaded separately from the workflow console.
+
+The view reads the six Observe GET endpoints from verkable-os B1. Start that
+runtime on port 8000 with Observe configured (see the provider's
+`docs/observe.md`). Vite dev and preview proxy `/v1` beside `/workflows`.
+The browser supplies neither tokens nor identity headers; principal resolution
+and source credentials belong to the backend/trusted proxy. The default runtime
+stub principal has no Observe access. A 404 can mean unavailable or unauthorized.
+The existing deployment example needs a same-origin `/v1` reverse-proxy route
+before it can serve Observe; hosting remains outside F1.
+
+The pending queue is current, refreshes every minute, and includes unchanged
+gates. Report sections and headline counts describe the selected historical
+window. Dates filter reports and trends in UTC, leaving the current queue intact.
+Missing trend counters remain gaps, with values also available as text.
+Issue and recipe links are shown only for absolute HTTP(S) URLs. Observe provides
+no gate decisions or other write actions.
+
+```bash
+pnpm gen:client       # regenerate both contract types from vendored schemas
+pnpm check:client     # fail on generated-file drift
+pnpm test             # includes @OBS-001-F1-01 and @OBS-001-F1-02 component cases
+pnpm test:bdd         # includes the Automation browser scenarios with stubbed API
+pnpm test:observe-live # requires local B1 + preview and OBSERVE_TEST_ORG/SPACE
+```
+
+See [contract provenance](docs/openapi/SOURCE.md). For live acceptance, run against
+the local vault-backed provider, capture the view and `/reports` and `/pending`
+responses, and compare the queue count with the vault producer's `peek` output.
+Stubbed browser tests do not replace this live evidence.
+
 ## Licence
 
 Apache-2.0. See [LICENSE](LICENSE) for the full licence text and [NOTICE](NOTICE)

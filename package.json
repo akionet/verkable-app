@@ -11,12 +11,20 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:license": "node scripts/check-license.mjs",
-    "test:bdd": "pnpm build && start-server-and-test \"vite preview --host 127.0.0.1 --port 4173\" http://127.0.0.1:4173 \"cucumber-js --config cucumber.mjs --tags \\\"not @F-WFB-R2-06\\\"\"",
+    "gen:client": "node scripts/gen-client.mjs",
+    "check:client": "node scripts/gen-client.mjs --check",
+    "test:bdd": "pnpm build && start-server-and-test \"vite preview --host 127.0.0.1 --port 4173\" http://127.0.0.1:4173 \"cucumber-js --config cucumber.mjs --tags \\\"not @F-WFB-R2-06 and not @observe-live\\\"\"",
     "test:e2e": "pnpm build && node scripts/run-real-e2e.mjs",
     "guard:bundle": "node scripts/check-bundle.mjs",
-    "check": "pnpm test:license && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm guard:bundle && pnpm test:bdd"
+    "check": "pnpm test:license && pnpm check:client && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm guard:bundle && pnpm test:bdd",
+    "test:observe-live": "cucumber-js --config cucumber.mjs --tags @observe-live"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.101.4",
+    "openapi-fetch": "^0.14.0",
+    "vega": "^6.4.0",
+    "vega-embed": "^7.3.0",
+    "vega-lite": "^6.5.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^9.3.1",
@@ -25,6 +33,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "openapi-typescript": "6.7.6",
     "@cucumber/cucumber": "^13.2.1",
     "@eslint/js": "^10.0.1",
     "@testing-library/jest-dom": "^7.0.1",
