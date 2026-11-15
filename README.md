@@ -50,4 +50,5 @@ change — and is worth preserving through the extraction.
 
 ## Licence
 
-Not yet chosen.
+Apache-2.0. See [LICENSE](LICENSE) for the full licence text and [NOTICE](NOTICE)
+for copyright attribution.
