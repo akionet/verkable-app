@@ -30,6 +30,7 @@ export function App() {
       <Box aria-label="Operator console" sx={{ maxWidth: 1120, mx: "auto", px: 3, pt: 2, display: "flex", gap: 1 }} component="nav">
         <Button variant={view === "run" ? "contained" : "text"} onClick={() => navigate("run")}>Run workflow</Button>
         <Button variant={view === "history" ? "contained" : "text"} onClick={() => navigate("history")}>Previous runs</Button>
+        <Button href="/automation">Automation</Button>
       </Box>
       {view === "run" ? <WorkflowConsole dataProvider={dataProvider} /> : (
         <Box component="main" sx={{ maxWidth: 1120, mx: "auto", p: 3 }}><RunHistory dataProvider={dataProvider} /></Box>
