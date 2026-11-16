@@ -28,7 +28,7 @@ When("I open that tenant's Automation view", async function () {
   await this.page.getByRole("link", { name: "Published recipe" }).waitFor();
 });
 Then("I see the report timeline, published recipes, judge stops and errors", async function () {
-  for (const name of ["Report timeline", "Published recipes", "Judge stops", "Errors"]) await this.page.getByRole("heading", { name, exact: true }).waitFor();
+  for (const name of ["Report timeline", "Published recipes", "Judge stops", "Errors"]) await this.page.getByRole("heading", { level: 2, name, exact: true }).waitFor();
   await this.page.getByText("Missing evidence").waitFor();
   assert.equal(await this.page.getByRole("link", { name: "Published recipe" }).getAttribute("href"), "https://example.test/recipes/published");
   assert.deepEqual(this.pageErrors, []);

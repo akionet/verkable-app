@@ -78,4 +78,4 @@ JSON Schema because its OpenAPI response intentionally leaves that body opaque.
 `pnpm install --frozen-lockfile`, `check:client`, `lint`, `typecheck`, `test`
 (33 passed) and `build` all pass locally. One unit test queried an ambiguous
 "Errors" heading (the headline tile and the section share the name); it now
-queries the section (h2). Browser BDD, live and e2e suites are left to CI.
+queries the section (h2), in the unit test and the browser step. Browser BDD, live and e2e suites are left to CI.
