@@ -45,7 +45,7 @@ No substitutes or handwritten declarations were used for missing libraries.
 An additional offline lockfile attempt used:
 
 ```text
-node C:/Users/emily/AppData/Local/pnpm/.tools/pnpm/9.0.0_tmp_33620_0/node_modules/pnpm/bin/pnpm.cjs --dir node_modules/.observe-lock install --offline --lockfile-only --store-dir .pnpm-store --ignore-workspace
+pnpm --dir node_modules/.observe-lock install --offline --lockfile-only --store-dir .pnpm-store --ignore-workspace
 ```
 
 It failed with `ERR_PNPM_NO_OFFLINE_META` for openapi-typescript. The temporary
@@ -71,3 +71,11 @@ Byte-for-byte comparison against the merged B1 checkout passed:
 
 No P1–P5 scope was added. Report-body types are additionally generated from B1's
 JSON Schema because its OpenAPI response intentionally leaves that body opaque.
+
+## Update: lockfile regenerated (2026-11-16)
+
+`pnpm-lock.yaml` was regenerated with pnpm 10.32.1 (the CI version). After a clean
+`pnpm install --frozen-lockfile`, `check:client`, `lint`, `typecheck`, `test`
+(33 passed) and `build` all pass locally. One unit test queried an ambiguous
+"Errors" heading (the headline tile and the section share the name); it now
+queries the section (h2). Browser BDD, live and e2e suites are left to CI.

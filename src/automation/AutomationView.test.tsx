@@ -35,7 +35,7 @@ it("@OBS-001-F1-01 renders a valid report including null titles and additive cou
   expect(await screen.findByRole("link", { name: "recipe-run" })).toHaveAttribute("href", "https://example.test/recipe");
   expect(screen.getByText("Missing evidence")).toBeInTheDocument();
   expect(screen.getByText("Held by backpressure")).toBeInTheDocument();
-  expect(screen.getByRole("heading", { name: "Errors" })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { level: 2, name: "Errors" })).toBeInTheDocument();
   expect(screen.getByLabelText("Space")).toHaveValue("editorial");
   await waitFor(() => expect(screen.getAllByLabelText("Trend chart").length).toBeGreaterThan(0));
   for (const [request] of fetcher.mock.calls) {
